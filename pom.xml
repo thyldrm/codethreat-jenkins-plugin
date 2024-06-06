@@ -1,118 +1,119 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>plugin</artifactId>
-        <version>4.52</version>
-        <relativePath />
-    </parent>
-    <groupId>io.jenkins.plugins</groupId>
-    <artifactId>codethreat-scanner</artifactId>
-    <version>${revision}.${changelist}</version>
-    <packaging>hpi</packaging>
-    <name>CodeThreat</name>
-    <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-        </license>
-    </licenses>
-    <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
-        <connection>scm:git:https://github.com/${gitHubRepo}</connection>
-        <developerConnection>scm:git:https://github.com/${gitHubRepo}</developerConnection>
-        <tag>${scmTag}</tag>
-        <url>https://github.com/${gitHubRepo}</url>
-    </scm>    <properties>
-        <revision>1</revision>
-        <changelist>999999-SNAPSHOT</changelist>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.jenkins-ci.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;plugin&lt;/artifactId&gt;
+        &lt;version&gt;4.52&lt;/version&gt;
+        &lt;relativePath /&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;io.jenkins.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;codethreat-scanner&lt;/artifactId&gt;
+    &lt;version&gt;${revision}.${changelist}&lt;/version&gt;
+    &lt;packaging&gt;hpi&lt;/packaging&gt;
+    &lt;name&gt;CodeThreat&lt;/name&gt;
+    &lt;url&gt;https://github.com/jenkinsci/${project.artifactId}-plugin&lt;/url&gt;
+    &lt;licenses&gt;
+        &lt;license&gt;
+            &lt;name&gt;MIT License&lt;/name&gt;
+            &lt;url&gt;https://opensource.org/licenses/MIT&lt;/url&gt;
+        &lt;/license&gt;
+    &lt;/licenses&gt;
+    &lt;scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false"&gt;
+        &lt;connection&gt;scm:git:https://github.com/${gitHubRepo}&lt;/connection&gt;
+        &lt;developerConnection&gt;scm:git:https://github.com/${gitHubRepo}&lt;/developerConnection&gt;
+        &lt;tag&gt;${scmTag}&lt;/tag&gt;
+        &lt;url&gt;https://github.com/${gitHubRepo}&lt;/url&gt;
+    &lt;/scm&gt;    &lt;properties&gt;
+        &lt;revision&gt;1&lt;/revision&gt;
+        &lt;changelist&gt;999999-SNAPSHOT&lt;/changelist&gt;
 
-        <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-        <jenkins.version>2.361.4</jenkins.version>
-        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>    </properties>
+        &lt;!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ --&gt;
+        &lt;jenkins.version&gt;2.361.4&lt;/jenkins.version&gt;
+        &lt;gitHubRepo&gt;jenkinsci/${project.artifactId}-plugin&lt;/gitHubRepo&gt;    &lt;/properties&gt;
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <!-- Pick up common dependencies for the selected LTS line: https://github.com/jenkinsci/bom#usage -->
-                <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.361.x</artifactId>
-                <version>1723.vcb_9fee52c9fc</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>structs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins.workflow</groupId>
-            <artifactId>workflow-cps</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins.workflow</groupId>
-            <artifactId>workflow-job</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins.workflow</groupId>
-            <artifactId>workflow-basic-steps</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins.workflow</groupId>
-            <artifactId>workflow-durable-task-step</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- * -->
-        <dependency>
-            <groupId>io.jenkins.plugins</groupId>
-            <artifactId>okhttp-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>jackson2-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-json-org</artifactId>
-            <version>2.13.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20190722</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>credentials</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>plain-credentials</artifactId>
-            <version>1.2</version>
-        </dependency>
-    </dependencies>
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
-</project>
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;!-- Pick up common dependencies for the selected LTS line: https://github.com/jenkinsci/bom#usage --&gt;
+                &lt;groupId&gt;io.jenkins.tools.bom&lt;/groupId&gt;
+                &lt;artifactId&gt;bom-2.361.x&lt;/artifactId&gt;
+                &lt;version&gt;1723.vcb_9fee52c9fc&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;structs&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins.workflow&lt;/groupId&gt;
+            &lt;artifactId&gt;workflow-cps&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins.workflow&lt;/groupId&gt;
+            &lt;artifactId&gt;workflow-job&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins.workflow&lt;/groupId&gt;
+            &lt;artifactId&gt;workflow-basic-steps&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins.workflow&lt;/groupId&gt;
+            &lt;artifactId&gt;workflow-durable-task-step&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- * --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.jenkins.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;okhttp-api&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson2-api&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-datatype-json-org&lt;/artifactId&gt;
+            &lt;version&gt;2.13.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+            &lt;artifactId&gt;gson&lt;/artifactId&gt;
+            &lt;version&gt;2.9.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.json&lt;/groupId&gt;
+            &lt;artifactId&gt;json&lt;/artifactId&gt;
+            &lt;version&gt;20230227&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;credentials&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jenkins-ci.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;plain-credentials&lt;/artifactId&gt;
+            &lt;version&gt;1.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
+            &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+    &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
+            &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+&lt;/project&gt;</root>
